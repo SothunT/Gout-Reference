@@ -1,0 +1,809 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Gout food guide: which foods are safe, light, medium or high in purine. English, Tiếng Việt, 廣東話.">
+<meta name="theme-color" content="#24427E">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Gout Foods">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<title>Gout Food Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;800&display=swap">
+<style>
+/* Layout: a big-button control panel (language, color level, food type, search) above a food grid grouped by level.
+   Four traffic-light level colors carry the meaning; an ink-blue accent is used only for controls. */
+:root{
+  --bg:#F3F5F8; --surface:#FFFFFF; --ink:#17202B; --ink-soft:#4A5566; --line:#D3DAE3;
+  --accent:#24427E; --accent-ink:#FFFFFF; --focus:#1E6BFF; --shadow:rgba(16,24,40,.18);
+  --l1:#2E7D32; --l1-ink:#FFFFFF; --l1-bg:#E4F2E5; --l1-line:#B5DAB8;
+  --l2:#F2C230; --l2-ink:#2B2200; --l2-bg:#FFF5D2; --l2-line:#E9D184;
+  --l3:#EE7A1B; --l3-ink:#2B1500; --l3-bg:#FFE7D3; --l3-line:#F0BB8C;
+  --l4:#C62828; --l4-ink:#FFFFFF; --l4-bg:#FBE0DE; --l4-line:#EBA7A2;
+  --font:"Be Vietnam Pro","Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --scale:1;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F141B; --surface:#18202A; --ink:#ECF0F4; --ink-soft:#A8B3C1; --line:#2C3746;
+    --accent:#9DB8F2; --accent-ink:#0D1830; --focus:#7FB0FF; --shadow:rgba(0,0,0,.5);
+    --l1:#5DBB63; --l1-ink:#06210A; --l1-bg:#15301B; --l1-line:#285A31;
+    --l2:#F2CC4D; --l2-ink:#2B2200; --l2-bg:#322A0D; --l2-line:#5E4F1A;
+    --l3:#F59A4C; --l3-ink:#2B1500; --l3-bg:#392311; --l3-line:#6A3F1C;
+    --l4:#F0625D; --l4-ink:#2A0505; --l4-bg:#391615; --l4-line:#6E2A28;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F141B; --surface:#18202A; --ink:#ECF0F4; --ink-soft:#A8B3C1; --line:#2C3746;
+  --accent:#9DB8F2; --accent-ink:#0D1830; --focus:#7FB0FF; --shadow:rgba(0,0,0,.5);
+  --l1:#5DBB63; --l1-ink:#06210A; --l1-bg:#15301B; --l1-line:#285A31;
+  --l2:#F2CC4D; --l2-ink:#2B2200; --l2-bg:#322A0D; --l2-line:#5E4F1A;
+  --l3:#F59A4C; --l3-ink:#2B1500; --l3-bg:#392311; --l3-line:#6A3F1C;
+  --l4:#F0625D; --l4-ink:#2A0505; --l4-bg:#391615; --l4-line:#6E2A28;
+  color-scheme:dark;
+}
+
+html{font-size:calc(19px * var(--scale));-webkit-text-size-adjust:100%;text-size-adjust:100%}
+@media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:1rem;line-height:1.5}
+[hidden]{display:none!important}
+*,*::before,*::after{box-sizing:border-box}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:clamp(16px,4vw,32px)}
+
+/* Header */
+.top{background:var(--surface);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:center;justify-content:space-between;padding-block:1rem 1.1rem}
+.brand{display:flex;gap:.8rem;align-items:center;min-width:0;flex:1 1 20rem}
+.mark{display:grid;grid-template-columns:1fr 1fr;gap:3px;width:2.5rem;height:2.5rem;flex:none}
+.mark i{border-radius:50%}
+.mark i:nth-child(1){background:var(--l1)}.mark i:nth-child(2){background:var(--l2)}
+.mark i:nth-child(3){background:var(--l3)}.mark i:nth-child(4){background:var(--l4)}
+h1{font-size:1.55rem;font-weight:800;line-height:1.15;margin:0;letter-spacing:-.01em;text-wrap:balance}
+.sub{margin:.2rem 0 0;color:var(--ink-soft);font-size:.92rem;text-wrap:balance}
+.controls{display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:center}
+.seg{display:flex;border:1.5px solid var(--line);border-radius:14px;padding:3px;background:var(--bg);gap:3px}
+.seg button{border:0;background:transparent;padding:.3rem .8rem;border-radius:10px;font-weight:600;font-size:.92rem;min-height:46px;white-space:nowrap}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.langs{flex:1 1 auto}
+.langs button{flex:1 1 0}
+.size{display:flex;align-items:center;gap:.4rem}
+.size span{font-size:.82rem;color:var(--ink-soft);font-weight:600}
+.size button{min-width:46px;font-weight:800}
+.size button:disabled{opacity:.35;cursor:default}
+
+/* Control panel */
+.panel{display:grid;gap:.7rem;padding-block:1.2rem .6rem}
+.label{font-size:.78rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);margin:.3rem 0 0}
+.levels{display:grid;grid-template-columns:1fr;gap:.45rem}
+.v0{--lvl:var(--accent);--lvl-ink:var(--accent-ink);--lvl-bg:var(--surface);--lvl-line:var(--line)}
+.v1{--lvl:var(--l1);--lvl-ink:var(--l1-ink);--lvl-bg:var(--l1-bg);--lvl-line:var(--l1-line)}
+.v2{--lvl:var(--l2);--lvl-ink:var(--l2-ink);--lvl-bg:var(--l2-bg);--lvl-line:var(--l2-line)}
+.v3{--lvl:var(--l3);--lvl-ink:var(--l3-ink);--lvl-bg:var(--l3-bg);--lvl-line:var(--l3-line)}
+.v4{--lvl:var(--l4);--lvl-ink:var(--l4-ink);--lvl-bg:var(--l4-bg);--lvl-line:var(--l4-line)}
+.lvl{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:.1rem .55rem;text-align:left;
+  padding:.5rem .65rem;border-radius:14px;border:2px solid var(--lvl-line);background:var(--lvl-bg);min-height:3.7rem}
+.lvl .dot{grid-row:1 / span 2}
+.lvl .nm{font-weight:700;line-height:1.2}
+.lvl .ds{grid-column:2 / span 2;font-size:.78rem;line-height:1.3;color:var(--ink-soft)}
+.lvl .cnt{font-size:.75rem;font-weight:700;font-variant-numeric:tabular-nums;padding:.05rem .5rem;border-radius:999px;background:var(--surface);color:var(--ink);border:1px solid var(--lvl-line)}
+.lvl[aria-pressed="true"]{background:var(--lvl);color:var(--lvl-ink);border-color:var(--ink);box-shadow:0 0 0 2px var(--lvl) inset}
+.lvl[aria-pressed="true"] .ds{color:inherit}
+.lvl.v0[aria-pressed="true"] .dot{box-shadow:0 0 0 2px var(--accent-ink)}
+.lvl:not(.v0)[aria-pressed="true"] .dot{background:var(--lvl-ink);color:var(--lvl)}
+.lvl.v0{min-height:3.4rem}
+.dot{width:2rem;height:2rem;border-radius:50%;display:grid;place-items:center;flex:none;
+  background:var(--lvl);color:var(--lvl-ink);font-weight:800;font-size:1rem;line-height:1}
+.v0 .dot{background:conic-gradient(var(--l1) 0 25%,var(--l2) 0 50%,var(--l3) 0 75%,var(--l4) 0)}
+
+.cats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.45rem}
+.cat{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2rem;padding:.5rem .2rem;min-height:4.3rem;
+  border:2px solid var(--line);border-radius:14px;background:var(--surface);font-size:.8rem;font-weight:600;line-height:1.15;text-align:center;overflow-wrap:anywhere;min-width:0}
+.cat .ic{font-size:1.6rem;line-height:1}
+.cat[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+
+.search{position:relative;margin-top:.3rem}
+.search svg{position:absolute;left:.9rem;top:50%;transform:translateY(-50%);width:1.2rem;height:1.2rem;color:var(--ink-soft);pointer-events:none}
+.search input{width:100%;font:inherit;font-size:1rem;padding:.7rem 3.2rem .7rem 2.7rem;min-height:54px;border:2px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink)}
+.search input::placeholder{color:var(--ink-soft);opacity:1}
+.search input::-webkit-search-cancel-button{display:none}
+.search input:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}
+.clear{position:absolute;right:.4rem;top:50%;transform:translateY(-50%);width:44px;height:44px;border:0;border-radius:50%;background:var(--bg);font-size:1.1rem;font-weight:700}
+
+@media (min-width:800px){
+  .levels{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .lvl{min-height:4.6rem}
+  .cats{grid-template-columns:repeat(8,minmax(0,1fr))}
+}
+
+/* Results */
+.status{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.5rem;padding-block:.7rem;border-top:1px solid var(--line);margin-top:.6rem}
+.status p{margin:0;font-weight:600;color:var(--ink-soft)}
+.reset{border:2px solid var(--accent);color:var(--accent);background:transparent;border-radius:12px;padding:.35rem .9rem;font-weight:700;min-height:44px}
+.group{margin-bottom:1.6rem}
+.ghead{position:sticky;top:env(safe-area-inset-top,0px);z-index:2;background:var(--bg);display:flex;align-items:center;gap:.6rem;
+  padding-block:.6rem .5rem;margin-bottom:.55rem;border-bottom:3px solid var(--lvl,var(--line))}
+.ghead .gic{font-size:1.5rem;line-height:1}
+.ghead h2{font-size:1.15rem;margin:0;font-weight:800;line-height:1.25;min-width:0}
+.ghead h2 small{display:block;font-size:.8rem;font-weight:500;color:var(--ink-soft)}
+.ghead .gc{margin-left:auto;font-size:.8rem;font-weight:700;color:var(--ink-soft);font-variant-numeric:tabular-nums;white-space:nowrap}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:.5rem}
+.food{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:.6rem;align-items:start;padding:.65rem .7rem;border-radius:12px;
+  background:var(--lvl-bg);border:1.5px solid var(--lvl-line);min-width:0}
+.food.is-open{grid-column:1 / -1}
+.pic{position:relative;width:3rem;height:3rem;padding:2px;border-radius:10px;border:1.5px solid var(--lvl-line);background:var(--surface);flex:none}
+.pic img{display:block;width:100%;height:100%;object-fit:cover;border-radius:8px}
+.pic .zoom{position:absolute;right:-.4rem;bottom:-.4rem;width:1.3rem;height:1.3rem;border-radius:50%;display:grid;place-items:center;
+  background:var(--accent);color:var(--accent-ink);font-weight:800;font-size:.85rem;line-height:1;border:2px solid var(--surface)}
+.pic[aria-expanded="true"]{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent)}
+.fig{grid-column:1 / -1;margin:.1rem 0 0;padding:.5rem;border-radius:10px;background:var(--surface);border:1px solid var(--lvl-line);display:grid;gap:.5rem}
+.fig-img{display:block;width:100%;border:0;padding:0;background:transparent;cursor:zoom-out}
+.fig img{display:block;margin-inline:auto;max-width:100%;border-radius:8px}
+.fig img.is-photo{width:100%;max-height:70vh;object-fit:contain}
+.fig img.is-ill{width:min(11rem,60%);height:auto;padding-block:.6rem}
+.fig figcaption{display:flex;flex-wrap:wrap;gap:.4rem .8rem;align-items:center;justify-content:space-between;font-size:.76rem;color:var(--ink-soft)}
+.fig figcaption span{min-width:0;overflow-wrap:anywhere}
+.fig figcaption a{color:var(--accent)}
+.fig-close{border:2px solid var(--accent);color:var(--accent);background:transparent;border-radius:10px;padding:.3rem .8rem;font-weight:700;font-size:.85rem;min-height:44px;margin-left:auto}
+.hint{display:flex;align-items:center;gap:.5rem;margin:.1rem 0 0;font-size:.84rem;color:var(--ink-soft)}
+.hint-pic{display:grid;place-items:center;width:1.3rem;height:1.3rem;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-weight:800;font-size:.85rem;line-height:1;flex:none}
+.food .txt{min-width:0}
+.food h3{font-size:1.08rem;font-weight:600;margin:0;line-height:1.3;overflow-wrap:anywhere}
+.food .alt{margin:.15rem 0 0;font-size:.82rem;color:var(--ink-soft);overflow-wrap:anywhere}
+.food .note{margin:.4rem 0 0;font-size:.84rem;line-height:1.4}
+.badge{flex:none;display:inline-flex;align-items:center;gap:.3rem;background:var(--lvl);color:var(--lvl-ink);font-weight:700;font-size:.76rem;
+  padding:.18rem .6rem .18rem .22rem;border-radius:999px;white-space:nowrap;margin-top:.1rem}
+.badge b{display:grid;place-items:center;width:1.3rem;height:1.3rem;border-radius:50%;background:var(--lvl-ink);color:var(--lvl);font-size:.75rem;line-height:1}
+.empty{padding:1.5rem;border:2px dashed var(--line);border-radius:14px;text-align:center;color:var(--ink-soft);margin-bottom:2rem}
+
+/* About */
+.about{display:grid;gap:1.6rem;padding-block:1.6rem 2rem;border-top:1px solid var(--line)}
+@media (min-width:800px){.about{grid-template-columns:1fr 1fr}}
+.about h2{font-size:1.15rem;font-weight:800;margin:0 0 .7rem}
+.legend,.tips{list-style:none;margin:0;padding:0;display:grid;gap:.6rem}
+.legend li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.1rem .7rem;align-items:center}
+.legend .dot{grid-row:1 / span 2}
+.legend b{line-height:1.25}
+.legend span{font-size:.84rem;color:var(--ink-soft);line-height:1.35}
+.small{font-size:.8rem;color:var(--ink-soft);margin:.8rem 0 0}
+.tips li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.6rem;font-size:.92rem;line-height:1.45}
+.tips li::before{content:"";width:.55rem;height:.55rem;border-radius:50%;background:var(--accent);margin-top:.5rem}
+.disc{grid-column:1 / -1;margin:0;padding:.9rem 1rem;border-radius:12px;background:var(--surface);border:1px solid var(--line);font-size:.86rem;color:var(--ink-soft)}
+
+#toTop{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:5;border:0;border-radius:999px;
+  background:var(--accent);color:var(--accent-ink);padding:.6rem 1.1rem;font-weight:700;min-height:48px;box-shadow:0 6px 18px var(--shadow)}
+</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <div class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div>
+        <h1 data-t="title">Gout Food Guide</h1>
+        <p class="sub" data-t="sub">What's safe to eat, and what can bring on a gout flare.</p>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="seg langs" role="group" aria-label="Language">
+        <button type="button" id="lang-en" data-lang="en" lang="en">English</button>
+        <button type="button" id="lang-vi" data-lang="vi" lang="vi">Tiếng Việt</button>
+        <button type="button" id="lang-zh" data-lang="zh" lang="zh-HK">廣東話</button>
+      </div>
+      <div class="size">
+        <span data-t="size">Text size</span>
+        <div class="seg">
+          <button type="button" id="size-down" aria-label="Smaller text">A−</button>
+          <button type="button" id="size-up" aria-label="Larger text">A+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="panel" aria-label="Filters">
+    <p class="label" data-t="byLevel">Show by color</p>
+    <div class="levels" id="levels"></div>
+    <p class="label" data-t="byCat">Show by food type</p>
+    <div class="cats" id="cats"></div>
+    <div class="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
+      <input type="search" id="q" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Search">
+      <button type="button" class="clear" id="clear" aria-label="Clear search" hidden>✕</button>
+    </div>
+    <p class="hint"><span class="hint-pic" aria-hidden="true">+</span><span data-t="picHint">Tap a picture to see it bigger.</span></p>
+  </section>
+
+  <div class="status">
+    <p id="status" aria-live="polite"></p>
+    <button type="button" class="reset" id="reset" data-t="reset" hidden>Show everything</button>
+  </div>
+
+  <div id="list"></div>
+
+  <section class="about">
+    <div>
+      <h2 data-t="legendTitle">What the colors mean</h2>
+      <ul class="legend" id="legend"></ul>
+      <p class="small" data-t="source"></p>
+    </div>
+    <div>
+      <h2 data-t="tipsTitle">Everyday tips</h2>
+      <ul class="tips" id="tips"></ul>
+    </div>
+    <p class="disc" data-t="disc"></p>
+  </section>
+</main>
+
+<button type="button" id="toTop" hidden>↑ <span data-t="top">Top</span></button>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------- Interface text ---------- */
+var L = {
+ en:{
+  title:"Gout Food Guide",
+  sub:"What's safe to eat, and what can bring on a gout flare.",
+  size:"Text size", byLevel:"Show by color", byCat:"Show by food type",
+  search:"Search foods, any language",
+  showing:"Showing {n} foods", match:"{n} foods match “{q}”",
+  none:"No foods found. Try another word, or tap “Show everything”.",
+  showPic:"Show picture of {n}", picHint:"Tap a picture to see it bigger. Tap again to close.", close:"Close picture", illus:"Illustration", photo:"Photo",
+  reset:"Show everything", legendTitle:"What the colors mean", tipsTitle:"Everyday tips", top:"Top",
+  allName:"All colors", allDesc:"Show every food",
+  levels:[null,
+   {name:"Safe", short:"Safe", desc:"Eat freely", range:"Less than 50 mg of purine per 100 g"},
+   {name:"Light", short:"Light", desc:"OK most days, normal portions", range:"50 to 100 mg per 100 g"},
+   {name:"Medium", short:"Medium", desc:"Small portions, not every day", range:"100 to 200 mg per 100 g"},
+   {name:"High – Avoid", short:"Avoid", desc:"High purine. Can bring on a flare", range:"Over 200 mg per 100 g, or a known gout trigger like beer or sugary drinks"}],
+  cats:{all:"All foods", veg:"Vegetables", meat:"Meat", seafood:"Seafood", fruit:"Fruit", drink:"Drinks", dish:"Dishes", other:"Other"},
+  source:"Purine levels are approximate, based on published food purine tables. Cooked dishes are rated by their usual ingredients.",
+  tips:[
+   "Drink plenty of water, about 8 glasses a day. It helps flush out uric acid.",
+   "Beer is the worst drink for gout. Avoid it, and keep all alcohol low.",
+   "Long-simmered broth (phở broth, Cantonese slow-cooked soup, hot pot) pulls purines out of meat and bones. Eat the noodles and vegetables and leave most of the broth.",
+   "Keep meat or fish to about the size of your palm per meal.",
+   "Sugary drinks and sweets raise uric acid too. Choose water, tea, or coffee with little sugar.",
+   "During a flare, eat only from the green (Safe) list and call the doctor."],
+  disc:"This guide is general information, and everyone is different. Follow your doctor's advice and keep taking gout medicine as prescribed."
+ },
+ vi:{
+  title:"Ăn uống cho người bệnh gút",
+  sub:"Món nào ăn được, món nào dễ gây cơn gút.",
+  size:"Cỡ chữ", byLevel:"Xem theo màu", byCat:"Xem theo loại thực phẩm",
+  search:"Tìm món ăn, tiếng nào cũng được",
+  showing:"Đang xem {n} món", match:"{n} món khớp với “{q}”",
+  none:"Không tìm thấy. Thử từ khác, hoặc bấm “Xem tất cả”.",
+  showPic:"Xem hình {n}", picHint:"Bấm vào hình để xem lớn hơn. Bấm lần nữa để đóng.", close:"Đóng hình", illus:"Hình minh họa", photo:"Ảnh",
+  reset:"Xem tất cả", legendTitle:"Ý nghĩa các màu", tipsTitle:"Lời khuyên hằng ngày", top:"Lên đầu",
+  allName:"Tất cả các màu", allDesc:"Xem mọi món",
+  levels:[null,
+   {name:"An toàn", short:"An toàn", desc:"Ăn thoải mái", range:"Dưới 50 mg purin trong 100 g"},
+   {name:"Ít purin", short:"Ít purin", desc:"Ăn được hầu hết các ngày, lượng vừa phải", range:"Từ 50 đến 100 mg trong 100 g"},
+   {name:"Trung bình", short:"Trung bình", desc:"Ăn ít, không ăn mỗi ngày", range:"Từ 100 đến 200 mg trong 100 g"},
+   {name:"Nhiều purin – Tránh", short:"Tránh", desc:"Purin cao, dễ gây cơn gút", range:"Trên 200 mg trong 100 g, hoặc thứ dễ gây cơn gút như bia, nước ngọt"}],
+  cats:{all:"Tất cả", veg:"Rau củ", meat:"Thịt", seafood:"Hải sản", fruit:"Trái cây", drink:"Đồ uống", dish:"Món ăn", other:"Khác"},
+  source:"Mức purin là ước tính, dựa trên các bảng purin thực phẩm đã công bố. Món nấu sẵn được xếp theo nguyên liệu thường dùng.",
+  tips:[
+   "Uống nhiều nước, khoảng 8 ly mỗi ngày, để giúp đào thải axit uric.",
+   "Bia là thức uống có hại nhất cho bệnh gút. Tránh bia và hạn chế mọi loại rượu.",
+   "Nước dùng hầm lâu (nước phở, canh hầm, nước lẩu) chứa nhiều purin từ thịt và xương. Ăn bánh phở và rau, để lại phần lớn nước dùng.",
+   "Mỗi bữa chỉ ăn thịt hoặc cá khoảng bằng lòng bàn tay.",
+   "Nước ngọt và đồ ngọt cũng làm tăng axit uric. Nên uống nước lọc, trà, hoặc cà phê ít đường.",
+   "Khi đang lên cơn gút, chỉ ăn các món màu xanh lá (An toàn) và gọi bác sĩ."],
+  disc:"Đây là thông tin chung, mỗi người mỗi khác. Hãy làm theo lời bác sĩ và tiếp tục uống thuốc gút theo toa."
+ },
+ zh:{
+  title:"痛風飲食指南",
+  sub:"邊啲食得，邊啲會引發痛風。",
+  size:"字體大小", byLevel:"按顏色睇", byCat:"按食物種類睇",
+  search:"搜尋食物，任何語言都得",
+  showing:"顯示 {n} 種食物", match:"{n} 種食物符合「{q}」",
+  none:"搵唔到。試吓其他字，或者撳「顯示全部」。",
+  showPic:"睇{n}嘅相", picHint:"撳相片可以睇大啲，再撳一次就收埋。", close:"收起相片", illus:"插圖", photo:"相片",
+  reset:"顯示全部", legendTitle:"顏色代表咩", tipsTitle:"日常小貼士", top:"返回頂部",
+  allName:"全部顏色", allDesc:"顯示所有食物",
+  levels:[null,
+   {name:"安全", short:"安全", desc:"可以放心食", range:"每100克少過50毫克嘌呤"},
+   {name:"低嘌呤", short:"低嘌呤", desc:"大部分日子都食得，正常份量", range:"每100克50至100毫克"},
+   {name:"中嘌呤", short:"中嘌呤", desc:"少食，唔好日日食", range:"每100克100至200毫克"},
+   {name:"高嘌呤－避免", short:"避免", desc:"嘌呤高，容易引發痛風", range:"每100克多過200毫克，或者啤酒、汽水呢類容易引發痛風嘅嘢"}],
+  cats:{all:"全部", veg:"蔬菜", meat:"肉類", seafood:"海鮮", fruit:"生果", drink:"飲品", dish:"菜式", other:"其他"},
+  source:"嘌呤含量係大約數字，根據已發表嘅食物嘌呤表。煮好嘅菜式按常用材料評級。",
+  tips:[
+   "多飲水，每日大約8杯，幫助排走尿酸。",
+   "啤酒對痛風最傷，唔好飲，其他酒都要少飲。",
+   "長時間煲嘅湯（河粉湯底、老火湯、火鍋湯）會將肉同骨嘅嘌呤煲出嚟。食麵同菜，湯就少飲。",
+   "每餐肉或者魚大約一隻手掌咁大就夠。",
+   "汽水同甜嘢都會令尿酸上升。揀清水、茶或者少糖咖啡。",
+   "痛風發作期間，只食綠色（安全）嘅食物，並且搵醫生。"],
+  disc:"呢個指南只係一般資料，每個人情況都唔同。請跟醫生嘅建議，繼續按醫生指示食痛風藥。"
+ }
+};
+
+var CATS = ["veg","meat","seafood","fruit","drink","dish","other"];
+var ICON = {all:"🍽️", veg:"🥬", meat:"🍖", seafood:"🦐", fruit:"🍊", drink:"🥤", dish:"🍜", other:"🍚"};
+var SYM = ["", "✓", "~", "!", "✕"];
+/* food id -> illustration file in Images/illustrations (generated) */
+/*ILL*/var ILL = {"bok-choy":"leafy-green","choy-sum":"leafy-green","chinese-broccoli-gai-lan":"leafy-green","napa-cabbage":"leafy-green","cabbage":"leafy-green","water-spinach-ong-choy":"leafy-green","watercress":"herb","mustard-greens":"leafy-green","lettuce":"green-salad","cucumber":"cucumber","tomato":"tomato","carrot":"carrot","daikon-radish":"carrot","potato":"potato","sweet-potato":"roasted-sweet-potato","taro":"potato","winter-melon":"melon","bitter-melon":"cucumber","luffa-silk-squash":"cucumber","pumpkin":"jack-o-lantern","eggplant":"eggplant","chayote":"pear","onion":"onion","green-onion":"onion","garlic":"garlic","ginger":"ginger-root","lemongrass":"herb","fresh-herbs-cilantro-thai-basil-perilla":"herb","bell-pepper":"bell-pepper","chili-pepper":"hot-pepper","lotus-root":"lotus","mung-bean-sprouts":"seedling","corn":"ear-of-corn","okra":"pea-pod","green-beans":"pea-pod","snow-peas":"pea-pod","pickled-mustard-greens":"jar","bamboo-shoots":"pine-decoration","soybean-sprouts":"seedling","spinach":"leafy-green","asparagus":"herb","broccoli":"broccoli","cauliflower":"broccoli","fresh-mushrooms-straw-oyster-enoki":"brown-mushroom","dried-shiitake-mushrooms":"brown-mushroom","dried-seaweed-nori-laver":"rice-ball","pork-belly":"bacon","vietnamese-pork-roll-cha-lua":"cut-of-meat","chicken":"poultry-leg","lean-pork":"cut-of-meat","pork-ribs":"meat-on-bone","beef":"cut-of-meat","beef-brisket":"cut-of-meat","lamb-or-goat":"meat-on-bone","duck":"duck","goose":"goose","roast-pork-and-char-siu":"cut-of-meat","roast-duck":"duck","ham":"cut-of-meat","chinese-sausage-lap-cheong":"cut-of-meat","bacon":"bacon","heart-and-gizzard":"anatomical-heart","intestines-stomach-and-tripe":"cut-of-meat","liver-pork-chicken-beef-and-pate":"cut-of-meat","kidney":"cut-of-meat","bone-broth-and-meat-stock":"pot-of-food","sea-cucumber":"water-wave","jellyfish":"jellyfish","fish-balls-and-fish-cakes":"oden","shrimp-and-prawns":"shrimp","crab":"crab","lobster":"lobster","squid-and-octopus":"squid","clams":"oyster","oysters":"oyster","sea-snails":"spiral-shell","salmon":"fish","tilapia":"fish","basa-catfish":"fish","snakehead-fish":"fish","carp-common-and-grass-carp":"fish","cod":"fish","grouper":"fish","eel":"fish","mackerel":"fish","anchovies":"fish","sardines":"fish","tuna":"fish","mussels":"oyster","fresh-scallops":"oyster","fish-roe":"fish","dried-and-salted-fish":"fish","dried-shrimp":"shrimp","dried-scallops-conpoy":"oyster","dried-squid":"squid","cherries":"cherries","strawberries":"strawberry","blueberries":"blueberries","orange":"tangerine","mandarin-orange":"tangerine","lemon-and-lime":"lemon","pomelo-and-grapefruit":"tangerine","apple":"red-apple","pear":"pear","banana":"banana","watermelon":"watermelon","cantaloupe-and-honeydew":"melon","papaya":"mango","mango":"mango","pineapple":"pineapple","dragon-fruit":"red-apple","guava":"green-apple","rambutan":"cherries","mangosteen":"grapes","grapes":"grapes","plum":"peach","persimmon":"tangerine","kiwi":"kiwi-fruit","peach":"peach","avocado":"avocado","coconut-meat":"coconut","sapodilla":"kiwi-fruit","star-fruit":"lemon","lychee":"strawberry","longan":"chestnut","durian":"pineapple","jackfruit":"pineapple","dried-fruit-and-candied-fruit":"grapes","water":"droplet","tea-green-oolong-jasmine":"teacup-without-handle","chrysanthemum-and-herbal-tea":"teapot","coffee":"hot-beverage","low-fat-milk":"glass-of-milk","soy-milk":"glass-of-milk","coconut-water":"coconut","wine":"wine-glass","liquor-rice-wine-whiskey-cognac":"tumbler-glass","non-alcoholic-beer":"beer-mug","bottled-fruit-juice":"beverage-box","sugarcane-juice":"cup-with-straw","bubble-tea":"bubble-tea","beer":"beer-mug","soda-and-sweet-soft-drinks":"cup-with-straw","plain-rice-congee":"bowl-with-spoon","sticky-rice":"cooked-rice","egg-fried-rice":"cooked-rice","steamed-egg-custard":"custard","stir-fried-greens-with-garlic":"leafy-green","fresh-spring-rolls-goi-cuon":"burrito","fried-spring-rolls-cha-gio":"burrito","braised-pork-and-eggs":"pot-of-food","bbq-pork-buns-char-siu-bao":"dumpling","rice-noodle-rolls-cheung-fun":"shallow-pan-of-food","sweet-bean-soup-che-tong-sui":"shaved-ice","mooncake":"moon-cake","banh-mi-sandwich":"baguette-bread","broken-rice-with-grilled-pork-com-tam":"cooked-rice","banh-xeo-crispy-crepe":"stuffed-flatbread","sour-fish-soup-canh-chua":"pot-of-food","clay-pot-braised-fish-ca-kho-to":"shallow-pan-of-food","seafood-congee-and-sampan-congee":"bowl-with-spoon","shrimp-dumplings-har-gow":"dumpling","pork-dumplings-siu-mai":"dumpling","white-cut-chicken":"poultry-leg","steamed-fish":"fish","clay-pot-rice":"pot-of-food","beef-pho":"steaming-bowl","bun-bo-hue-spicy-beef-noodle-soup":"steaming-bowl","bun-rieu-crab-noodle-soup":"steaming-bowl","hu-tieu-pork-and-seafood-noodle-soup":"steaming-bowl","wonton-noodle-soup":"steaming-bowl","hot-pot":"pot-of-food","cantonese-slow-cooked-soup":"pot-of-food","organ-meat-congee-liver-intestines":"bowl-with-spoon","white-rice":"cooked-rice","brown-rice":"cooked-rice","rice-noodles-pho-bun-hu-tieu":"spaghetti","egg-noodles":"spaghetti","glass-noodles":"spaghetti","bread":"bread","rice-paper":"flatbread","eggs-chicken-duck-quail":"egg","century-egg-and-salted-egg":"egg","milk-yogurt-and-cheese":"cheese-wedge","nuts-cashew-almond-walnut":"chestnut","lotus-seeds":"lotus","soy-sauce":"jar","hoisin-sauce":"jar","cooking-oil":"olive","oatmeal":"bowl-with-spoon","tofu":"butter","fried-tofu":"butter","fermented-bean-curd":"jar","mung-beans-and-red-beans":"beans","peanuts":"peanuts","oyster-sauce":"jar","sugar-and-honey":"honey-pot","dried-soybeans":"beans","fish-sauce":"jar","bouillon-powder":"salt","shrimp-paste":"jar","fermented-fish-sauce-mam-nem":"jar","xo-sauce":"jar"};/*/ILL*/
+
+/* ---------- Notes: [English, Vietnamese, Cantonese] ---------- */
+var N = {
+ vegp:["Purines in vegetables are much less likely to cause gout than meat or seafood.","Purin trong rau ít gây cơn gút hơn nhiều so với thịt và hải sản.","蔬菜嘅嘌呤比肉類同海鮮少好多機會引發痛風。"],
+ small:["High by weight, but usually used in small amounts. Use just a little.","Tính theo cân thì cao, nhưng thường chỉ dùng ít. Dùng ít thôi.","按重量計偏高，但通常只用少量。用少少就好。"],
+ fatty:["Fatty cuts have fewer purines, but too much fat isn't healthy either.","Thịt có mỡ ít purin hơn, nhưng ăn nhiều mỡ cũng không tốt.","肥肉嘌呤較少，但太多脂肪都唔健康。"],
+ organ:["Organ meats are among the highest-purine foods.","Nội tạng là nhóm thực phẩm có purin cao nhất.","內臟係嘌呤最高嘅食物之一。"],
+ organm:["Organ meat. Eat rarely, and only a little.","Nội tạng. Thỉnh thoảng mới ăn, và ăn ít.","內臟，間中先食，食少少。"],
+ stock:["Long simmering pulls purines out of meat and bones into the liquid.","Hầm lâu làm purin từ thịt và xương tan vào nước dùng.","長時間煲會將肉同骨嘅嘌呤煲落湯度。"],
+ broth:["Most of the purines are in the broth. Eat the noodles and toppings, leave the broth.","Purin nằm nhiều trong nước dùng. Ăn bánh và rau, để lại nước dùng.","嘌呤大多喺湯入面。食麵同配料，湯就唔好飲。"],
+ soup:["One of the biggest gout triggers. Purines from the meat and bones go into the soup.","Một trong những nguyên nhân gây cơn gút nhiều nhất. Purin từ thịt và xương tan vào canh.","最容易引發痛風嘅食物之一，肉同骨嘅嘌呤全部煲咗落湯。"],
+ hotpot:["The broth soaks up purines from all the meat and seafood. Don't drink the broth at the end.","Nước lẩu thấm purin từ thịt và hải sản. Đừng uống nước lẩu cuối bữa.","火鍋湯吸收晒啲肉同海鮮嘅嘌呤，最後唔好飲湯。"],
+ dried:["Drying concentrates purines. Even a small amount is a lot.","Đồ khô cô đặc purin. Ăn ít cũng đã nhiều.","曬乾之後嘌呤更濃縮，少少都好高。"],
+ ferm:["Made from fermented seafood. Very concentrated.","Làm từ hải sản lên men, purin rất đậm đặc.","用發酵海鮮製成，嘌呤好濃縮。"],
+ fishball:["Fish paste has fewer purines than whole fish.","Chả cá có ít purin hơn cá nguyên con.","魚漿製品嘅嘌呤比原條魚少。"],
+ lowsea:["Seafood, but very low in purine.","Là hải sản nhưng purin rất thấp.","雖然係海鮮，但嘌呤好低。"],
+ cherry:["May help lower the chance of a flare.","Có thể giúp giảm nguy cơ lên cơn gút.","可能有助減少痛風發作。"],
+ grapefruit:["Can interact with some medicines, including the gout medicine colchicine. Ask the doctor.","Có thể tương tác với một số thuốc, kể cả thuốc gút colchicine. Hỏi bác sĩ.","可能同某啲藥有相互作用，包括痛風藥秋水仙素。請問醫生。"],
+ starfruit:["Low purine, but harmful for anyone with kidney problems.","Ít purin, nhưng có hại cho người bị bệnh thận.","嘌呤低，但腎有問題嘅人唔好食。"],
+ sweetfruit:["Very sweet. A small handful is fine.","Trái rất ngọt. Ăn một ít thì được.","好甜，食少少就冇問題。"],
+ sugar:["Sugar, especially fructose, raises uric acid.","Đường, nhất là đường fructose, làm tăng axit uric.","糖（尤其係果糖）會令尿酸上升。"],
+ water:["The best drink. About 8 glasses a day helps flush out uric acid.","Thức uống tốt nhất. Khoảng 8 ly mỗi ngày giúp đào thải axit uric.","最好嘅飲品。每日大約8杯，幫助排走尿酸。"],
+ coffee:["May help lower uric acid. Go easy on sugar and condensed milk.","Có thể giúp giảm axit uric. Bớt đường và sữa đặc.","可能有助降低尿酸。少啲糖同煉奶。"],
+ dairy:["Low-fat dairy may help lower uric acid.","Sữa ít béo có thể giúp giảm axit uric.","低脂奶類可能有助降低尿酸。"],
+ soy:["Plant protein. Fine in normal portions.","Đạm thực vật. Ăn lượng vừa phải thì được.","植物蛋白，正常份量冇問題。"],
+ beer:["The worst drink for gout. Beer has both purines and alcohol.","Thức uống có hại nhất cho bệnh gút: vừa có purin vừa có cồn.","對痛風最差嘅飲品，又有嘌呤又有酒精。"],
+ nabeer:["Still has some purines from the malt and yeast.","Vẫn còn purin từ mạch nha và men bia.","麥芽同酵母仍然有嘌呤。"],
+ liquor:["Alcohol raises uric acid. Keep it low, and none during a flare.","Rượu làm tăng axit uric. Uống ít, và không uống khi đang lên cơn.","酒精會令尿酸上升。要少飲，發作期間唔好飲。"],
+ banhmi:["Pâté is made from liver, which is very high. Ask for it without pâté.","Pa tê làm từ gan, purin rất cao. Nên dặn không pa tê.","肝醬係用肝做，嘌呤好高。叫佢唔好落肝醬。"],
+ roll:["Only a few shrimp. Mostly noodles and vegetables.","Chỉ có vài con tôm, chủ yếu là bún và rau.","得幾隻蝦，主要係米粉同菜。"],
+ shellfish:["Shellfish. Keep portions small.","Hải sản có vỏ. Ăn ít thôi.","貝殼類海鮮，要食少啲。"]
+};
+
+/* ---------- Foods: [category, level 1-4, English, Vietnamese, Cantonese, note] ---------- */
+var F = [
+ ["veg",1,"Bok choy","Cải thìa","白菜"],
+ ["veg",1,"Choy sum","Cải ngọt","菜心"],
+ ["veg",1,"Chinese broccoli (gai lan)","Cải làn","芥蘭"],
+ ["veg",1,"Napa cabbage","Cải thảo","黃芽白（紹菜）"],
+ ["veg",1,"Cabbage","Bắp cải","椰菜"],
+ ["veg",1,"Water spinach (ong choy)","Rau muống","通菜"],
+ ["veg",1,"Watercress","Cải xoong","西洋菜"],
+ ["veg",1,"Mustard greens","Cải bẹ xanh","芥菜"],
+ ["veg",1,"Lettuce","Xà lách","生菜"],
+ ["veg",1,"Cucumber","Dưa leo","青瓜"],
+ ["veg",1,"Tomato","Cà chua","番茄"],
+ ["veg",1,"Carrot","Cà rốt","紅蘿蔔（甘筍）"],
+ ["veg",1,"Daikon radish","Củ cải trắng","白蘿蔔"],
+ ["veg",1,"Potato","Khoai tây","薯仔"],
+ ["veg",1,"Sweet potato","Khoai lang","番薯"],
+ ["veg",1,"Taro","Khoai môn","芋頭"],
+ ["veg",1,"Winter melon","Bí đao","冬瓜"],
+ ["veg",1,"Bitter melon","Khổ qua (mướp đắng)","苦瓜"],
+ ["veg",1,"Luffa (silk squash)","Mướp","絲瓜"],
+ ["veg",1,"Pumpkin","Bí đỏ","南瓜"],
+ ["veg",1,"Eggplant","Cà tím","茄子"],
+ ["veg",1,"Chayote","Su su","佛手瓜"],
+ ["veg",1,"Onion","Hành tây","洋蔥"],
+ ["veg",1,"Green onion","Hành lá","蔥"],
+ ["veg",1,"Garlic","Tỏi","蒜頭"],
+ ["veg",1,"Ginger","Gừng","薑"],
+ ["veg",1,"Lemongrass","Sả","香茅"],
+ ["veg",1,"Fresh herbs (cilantro, Thai basil, perilla)","Rau thơm (ngò, húng quế, tía tô)","香草（芫荽、九層塔、紫蘇）"],
+ ["veg",1,"Bell pepper","Ớt chuông","燈籠椒"],
+ ["veg",1,"Chili pepper","Ớt","辣椒"],
+ ["veg",1,"Lotus root","Củ sen","蓮藕"],
+ ["veg",1,"Mung bean sprouts","Giá đỗ","芽菜"],
+ ["veg",1,"Corn","Bắp (ngô)","粟米"],
+ ["veg",1,"Okra","Đậu bắp","秋葵"],
+ ["veg",1,"Green beans","Đậu que","四季豆"],
+ ["veg",1,"Snow peas","Đậu Hà Lan","荷蘭豆"],
+ ["veg",1,"Pickled mustard greens","Dưa cải chua","鹹酸菜"],
+ ["veg",2,"Bamboo shoots","Măng","竹筍","vegp"],
+ ["veg",2,"Soybean sprouts","Giá đậu nành","大豆芽","vegp"],
+ ["veg",2,"Spinach","Rau bina (cải bó xôi)","菠菜","vegp"],
+ ["veg",2,"Asparagus","Măng tây","蘆筍","vegp"],
+ ["veg",2,"Broccoli","Bông cải xanh","西蘭花","vegp"],
+ ["veg",2,"Cauliflower","Bông cải trắng (súp lơ)","椰菜花","vegp"],
+ ["veg",2,"Fresh mushrooms (straw, oyster, enoki)","Nấm tươi (nấm rơm, bào ngư, kim châm)","鮮菇（草菇、蠔菇、金菇）","vegp"],
+ ["veg",3,"Dried shiitake mushrooms","Nấm đông cô khô","乾冬菇","small"],
+ ["veg",3,"Dried seaweed (nori, laver)","Rong biển khô","紫菜","small"],
+
+ ["meat",2,"Pork belly","Thịt ba chỉ (ba rọi)","五花腩","fatty"],
+ ["meat",2,"Vietnamese pork roll (chả lụa)","Chả lụa (giò lụa)","越南扎肉"],
+ ["meat",3,"Chicken","Thịt gà","雞肉"],
+ ["meat",3,"Lean pork","Thịt heo nạc","瘦豬肉"],
+ ["meat",3,"Pork ribs","Sườn heo","排骨"],
+ ["meat",3,"Beef","Thịt bò","牛肉"],
+ ["meat",3,"Beef brisket","Nạm bò","牛腩"],
+ ["meat",3,"Lamb or goat","Thịt cừu, thịt dê","羊肉"],
+ ["meat",3,"Duck","Thịt vịt","鴨肉"],
+ ["meat",3,"Goose","Thịt ngỗng","鵝肉"],
+ ["meat",3,"Roast pork & char siu","Heo quay, xá xíu","燒肉、叉燒"],
+ ["meat",3,"Roast duck","Vịt quay","燒鴨"],
+ ["meat",3,"Ham","Giăm bông","火腿"],
+ ["meat",3,"Chinese sausage (lap cheong)","Lạp xưởng","臘腸"],
+ ["meat",3,"Bacon","Thịt xông khói","煙肉"],
+ ["meat",3,"Heart & gizzard","Tim, mề gà","豬心、雞腎","organm"],
+ ["meat",3,"Intestines, stomach & tripe","Lòng, bao tử, sách bò","大腸、豬肚、牛柏葉","organm"],
+ ["meat",4,"Liver (pork, chicken, beef) & pâté","Gan (heo, gà, bò) và pa tê","豬膶、雞肝、牛肝、肝醬","organ"],
+ ["meat",4,"Kidney","Cật heo (bầu dục)","豬腰","organ"],
+ ["meat",4,"Bone broth & meat stock","Nước dùng xương, nước hầm thịt","骨湯、肉湯","stock"],
+
+ ["seafood",1,"Sea cucumber","Hải sâm","海參","lowsea"],
+ ["seafood",1,"Jellyfish","Sứa","海蜇","lowsea"],
+ ["seafood",2,"Fish balls & fish cakes","Cá viên, chả cá","魚蛋、魚片","fishball"],
+ ["seafood",3,"Shrimp & prawns","Tôm","蝦"],
+ ["seafood",3,"Crab","Cua, ghẹ","蟹"],
+ ["seafood",3,"Lobster","Tôm hùm","龍蝦"],
+ ["seafood",3,"Squid & octopus","Mực, bạch tuộc","魷魚、八爪魚"],
+ ["seafood",3,"Clams","Nghêu, sò","蜆","shellfish"],
+ ["seafood",3,"Oysters","Hàu","生蠔","shellfish"],
+ ["seafood",3,"Sea snails","Ốc","螺","shellfish"],
+ ["seafood",3,"Salmon","Cá hồi","三文魚"],
+ ["seafood",3,"Tilapia","Cá rô phi, cá diêu hồng","非洲鯽"],
+ ["seafood",3,"Basa catfish","Cá basa, cá tra","巴沙魚"],
+ ["seafood",3,"Snakehead fish","Cá lóc","生魚"],
+ ["seafood",3,"Carp (common & grass carp)","Cá chép, cá trắm","鯉魚、鯇魚"],
+ ["seafood",3,"Cod","Cá tuyết","鱈魚"],
+ ["seafood",3,"Grouper","Cá mú","石斑"],
+ ["seafood",3,"Eel","Lươn","鱔"],
+ ["seafood",3,"Mackerel","Cá thu","鯖魚、馬鮫魚"],
+ ["seafood",4,"Anchovies","Cá cơm","鳳尾魚"],
+ ["seafood",4,"Sardines","Cá mòi","沙甸魚"],
+ ["seafood",4,"Tuna","Cá ngừ","吞拿魚"],
+ ["seafood",4,"Mussels","Vẹm (chem chép)","青口"],
+ ["seafood",4,"Fresh scallops","Sò điệp tươi","帶子"],
+ ["seafood",4,"Fish roe","Trứng cá","魚子、魚春"],
+ ["seafood",4,"Dried & salted fish","Khô cá, cá cơm khô","鹹魚、魚乾","dried"],
+ ["seafood",4,"Dried shrimp","Tôm khô","蝦米","dried"],
+ ["seafood",4,"Dried scallops (conpoy)","Sò điệp khô","瑤柱","dried"],
+ ["seafood",4,"Dried squid","Khô mực","魷魚乾","dried"],
+
+ ["fruit",1,"Cherries","Anh đào (cherry)","車厘子","cherry"],
+ ["fruit",1,"Strawberries","Dâu tây","士多啤梨"],
+ ["fruit",1,"Blueberries","Việt quất","藍莓"],
+ ["fruit",1,"Orange","Cam","橙"],
+ ["fruit",1,"Mandarin orange","Quýt","柑、桔"],
+ ["fruit",1,"Lemon & lime","Chanh","檸檬、青檸"],
+ ["fruit",1,"Pomelo & grapefruit","Bưởi","碌柚、西柚","grapefruit"],
+ ["fruit",1,"Apple","Táo","蘋果"],
+ ["fruit",1,"Pear","Lê","梨"],
+ ["fruit",1,"Banana","Chuối","香蕉"],
+ ["fruit",1,"Watermelon","Dưa hấu","西瓜"],
+ ["fruit",1,"Cantaloupe & honeydew","Dưa lưới","蜜瓜"],
+ ["fruit",1,"Papaya","Đu đủ","木瓜"],
+ ["fruit",1,"Mango","Xoài","芒果"],
+ ["fruit",1,"Pineapple","Thơm (dứa)","菠蘿"],
+ ["fruit",1,"Dragon fruit","Thanh long","火龍果"],
+ ["fruit",1,"Guava","Ổi","番石榴"],
+ ["fruit",1,"Rambutan","Chôm chôm","紅毛丹"],
+ ["fruit",1,"Mangosteen","Măng cụt","山竹"],
+ ["fruit",1,"Grapes","Nho","提子"],
+ ["fruit",1,"Plum","Mận","布冧"],
+ ["fruit",1,"Persimmon","Hồng","柿"],
+ ["fruit",1,"Kiwi","Kiwi","奇異果"],
+ ["fruit",1,"Peach","Đào","桃"],
+ ["fruit",1,"Avocado","Bơ","牛油果"],
+ ["fruit",1,"Coconut meat","Cơm dừa","椰肉"],
+ ["fruit",1,"Sapodilla","Hồng xiêm (sa-pô-chê)","人心果"],
+ ["fruit",2,"Star fruit","Khế","楊桃","starfruit"],
+ ["fruit",2,"Lychee","Vải","荔枝","sweetfruit"],
+ ["fruit",2,"Longan","Nhãn","龍眼","sweetfruit"],
+ ["fruit",2,"Durian","Sầu riêng","榴槤","sweetfruit"],
+ ["fruit",2,"Jackfruit","Mít","菠蘿蜜","sweetfruit"],
+ ["fruit",2,"Dried fruit & candied fruit","Trái cây sấy, mứt","乾果、蜜餞","sugar"],
+
+ ["drink",1,"Water","Nước lọc","清水","water"],
+ ["drink",1,"Tea (green, oolong, jasmine)","Trà (trà xanh, ô long, trà lài)","茶（綠茶、烏龍、香片）"],
+ ["drink",1,"Chrysanthemum & herbal tea","Trà hoa cúc, trà thảo mộc","菊花茶、涼茶"],
+ ["drink",1,"Coffee","Cà phê","咖啡","coffee"],
+ ["drink",1,"Low-fat milk","Sữa tươi ít béo","低脂奶","dairy"],
+ ["drink",1,"Soy milk","Sữa đậu nành","豆漿","soy"],
+ ["drink",1,"Coconut water","Nước dừa","椰青水"],
+ ["drink",2,"Wine","Rượu vang","紅酒、白葡萄酒","liquor"],
+ ["drink",3,"Liquor (rice wine, whiskey, cognac)","Rượu mạnh (rượu đế, whisky, cognac)","烈酒（米酒、拔蘭地、威士忌）","liquor"],
+ ["drink",3,"Non-alcoholic beer","Bia không cồn","無酒精啤酒","nabeer"],
+ ["drink",3,"Bottled fruit juice","Nước ép đóng chai","包裝果汁","sugar"],
+ ["drink",3,"Sugarcane juice","Nước mía","蔗汁","sugar"],
+ ["drink",3,"Bubble tea","Trà sữa trân châu","珍珠奶茶","sugar"],
+ ["drink",4,"Beer","Bia","啤酒","beer"],
+ ["drink",4,"Soda & sweet soft drinks","Nước ngọt có ga","汽水","sugar"],
+
+ ["dish",1,"Plain rice congee","Cháo trắng","白粥"],
+ ["dish",1,"Sticky rice","Xôi","糯米飯"],
+ ["dish",1,"Egg fried rice","Cơm chiên trứng","蛋炒飯"],
+ ["dish",1,"Steamed egg custard","Trứng hấp","蒸水蛋"],
+ ["dish",1,"Stir-fried greens with garlic","Rau xào tỏi","蒜蓉炒菜"],
+ ["dish",2,"Fresh spring rolls (gỏi cuốn)","Gỏi cuốn","越南米紙卷","roll"],
+ ["dish",2,"Fried spring rolls (chả giò)","Chả giò","越南炸春卷"],
+ ["dish",2,"Braised pork & eggs","Thịt kho trứng","越式滷肉蛋"],
+ ["dish",2,"BBQ pork buns (char siu bao)","Bánh bao xá xíu","叉燒包"],
+ ["dish",2,"Rice noodle rolls (cheung fun)","Bánh cuốn","腸粉"],
+ ["dish",2,"Sweet bean soup (chè, tong sui)","Chè đậu (đậu xanh, đậu đỏ)","糖水（綠豆沙、紅豆沙）","sugar"],
+ ["dish",2,"Mooncake","Bánh trung thu","月餅","sugar"],
+ ["dish",3,"Bánh mì sandwich","Bánh mì thịt","越南法包","banhmi"],
+ ["dish",3,"Broken rice with grilled pork (cơm tấm)","Cơm tấm sườn","越南碎米飯"],
+ ["dish",3,"Bánh xèo (crispy crêpe)","Bánh xèo","越南煎餅"],
+ ["dish",3,"Sour fish soup (canh chua)","Canh chua cá","越南酸魚湯"],
+ ["dish",3,"Clay pot braised fish (cá kho tộ)","Cá kho tộ","越式瓦煲燜魚"],
+ ["dish",3,"Seafood congee & sampan congee","Cháo hải sản","艇仔粥、海鮮粥"],
+ ["dish",3,"Shrimp dumplings (har gow)","Há cảo tôm","蝦餃"],
+ ["dish",3,"Pork dumplings (siu mai)","Xíu mại (dim sum)","燒賣"],
+ ["dish",3,"White cut chicken","Gà luộc","白切雞"],
+ ["dish",3,"Steamed fish","Cá hấp","清蒸魚"],
+ ["dish",3,"Clay pot rice","Cơm niêu Hồng Kông","煲仔飯"],
+ ["dish",4,"Beef phở","Phở bò","越南牛肉河","broth"],
+ ["dish",4,"Bún bò Huế (spicy beef noodle soup)","Bún bò Huế","順化牛肉粉","broth"],
+ ["dish",4,"Bún riêu (crab noodle soup)","Bún riêu cua","越南蟹肉番茄米粉","broth"],
+ ["dish",4,"Hủ tiếu (pork & seafood noodle soup)","Hủ tiếu","金邊粿條","broth"],
+ ["dish",4,"Wonton noodle soup","Mì hoành thánh","雲吞麵","broth"],
+ ["dish",4,"Hot pot","Lẩu","火鍋（打邊爐）","hotpot"],
+ ["dish",4,"Cantonese slow-cooked soup","Canh hầm kiểu Quảng Đông","老火湯","soup"],
+ ["dish",4,"Organ meat congee (liver, intestines)","Cháo lòng, cháo gan","及第粥、豬膶粥","organ"],
+
+ ["other",1,"White rice","Cơm trắng","白飯"],
+ ["other",1,"Brown rice","Gạo lứt","糙米"],
+ ["other",1,"Rice noodles (phở, bún, hủ tiếu)","Bánh phở, bún, hủ tiếu","河粉、米粉、粿條"],
+ ["other",1,"Egg noodles","Mì trứng","蛋麵"],
+ ["other",1,"Glass noodles","Miến","粉絲"],
+ ["other",1,"Bread","Bánh mì không","麵包"],
+ ["other",1,"Rice paper","Bánh tráng","米紙"],
+ ["other",1,"Eggs (chicken, duck, quail)","Trứng gà, trứng vịt, trứng cút","雞蛋、鴨蛋、鵪鶉蛋"],
+ ["other",1,"Century egg & salted egg","Trứng bắc thảo, trứng muối","皮蛋、鹹蛋"],
+ ["other",1,"Milk, yogurt & cheese","Sữa, sữa chua, phô mai","牛奶、乳酪、芝士","dairy"],
+ ["other",1,"Nuts (cashew, almond, walnut)","Hạt điều, hạnh nhân, óc chó","腰果、杏仁、合桃"],
+ ["other",1,"Lotus seeds","Hạt sen","蓮子"],
+ ["other",1,"Soy sauce","Nước tương (xì dầu)","豉油"],
+ ["other",1,"Hoisin sauce","Tương đen","海鮮醬"],
+ ["other",1,"Cooking oil","Dầu ăn","食油"],
+ ["other",2,"Oatmeal","Yến mạch","燕麥"],
+ ["other",2,"Tofu","Đậu hũ (đậu phụ)","豆腐","soy"],
+ ["other",2,"Fried tofu","Đậu hũ chiên","豆卜、炸豆腐","soy"],
+ ["other",2,"Fermented bean curd","Chao","腐乳"],
+ ["other",2,"Mung beans & red beans","Đậu xanh, đậu đỏ","綠豆、紅豆"],
+ ["other",2,"Peanuts","Đậu phộng","花生"],
+ ["other",2,"Oyster sauce","Dầu hào","蠔油","small"],
+ ["other",2,"Sugar & honey","Đường, mật ong","糖、蜜糖","sugar"],
+ ["other",3,"Dried soybeans","Đậu nành hạt","黃豆"],
+ ["other",3,"Fish sauce","Nước mắm","魚露","small"],
+ ["other",3,"Bouillon powder","Hạt nêm, bột nêm","雞粉、湯粉","small"],
+ ["other",4,"Shrimp paste","Mắm tôm, mắm ruốc","蝦醬、蝦膏","ferm"],
+ ["other",4,"Fermented fish sauce (mắm nêm)","Mắm nêm, mắm cá","越南魚醬","ferm"],
+ ["other",4,"XO sauce","Sốt XO","XO醬","dried"]
+];
+
+/* ---------- Prepare data ---------- */
+function norm(s){
+  return String(s).toLowerCase().replace(/đ/g,"d").normalize("NFD").replace(/[̀-ͯ]/g,"");
+}
+function slug(s){
+  return norm(s).replace(/&/g," and ").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+}
+var FOODS = F.map(function(r,i){
+  return {id:slug(r[2]), cat:r[0], lv:r[1], n:[r[2],r[3],r[4]], note:r[5]||null, i:i, ci:CATS.indexOf(r[0]), s:norm(r[2]+" | "+r[3]+" | "+r[4])};
+});
+var BYID = {}; FOODS.forEach(function(f){ BYID[f.id] = f; });
+
+/* Photos: filled in on GitHub by the "Download food photos" step. Until then, illustrations show. */
+var PHOTOS = {};
+var OPEN = {};
+function thumbSrc(id){ return PHOTOS[id] ? "Images/photos/thumbs/"+id+".jpg" : "Images/illustrations/small/"+(ILL[id]||"fork-and-knife-with-plate")+".webp"; }
+function fullSrc(id){ return PHOTOS[id] ? "Images/photos/"+id+".jpg" : "Images/illustrations/"+(ILL[id]||"fork-and-knife-with-plate")+".webp"; }
+function illSrc(id, small){ return "Images/illustrations/"+(small?"small/":"")+(ILL[id]||"fork-and-knife-with-plate")+".webp"; }
+
+/* ---------- State ---------- */
+var store = {
+  get:function(k){try{return localStorage.getItem(k);}catch(e){return null;}},
+  set:function(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+};
+var LANGS = ["en","vi","zh"];
+var ALIAS = {en:"en", vi:"vi", zh:"zh", yue:"zh", canto:"zh", cantonese:"zh", vietnamese:"vi", english:"en"};
+var SCALES = [0.9, 1, 1.15, 1.3, 1.5];
+
+var lang = (function(){
+  var h = ""; try{ h = (location.hash||"").slice(1).toLowerCase(); }catch(e){}
+  if(ALIAS[h]) return ALIAS[h];
+  var s = store.get("gfg-lang"); if(LANGS.indexOf(s) > -1) return s;
+  var nav = (navigator.language||"").toLowerCase();
+  if(nav.indexOf("vi") === 0) return "vi";
+  if(nav.indexOf("zh") === 0 || nav.indexOf("yue") === 0) return "zh";
+  return "en";
+})();
+var si = parseInt(store.get("gfg-size"),10); if(!(si >= 0 && si < SCALES.length)) si = 1;
+var state = {level:0, cat:"all", q:""};
+
+var $ = function(id){return document.getElementById(id);};
+var elLevels=$("levels"), elCats=$("cats"), elList=$("list"), elQ=$("q"), elClear=$("clear"),
+    elStatus=$("status"), elReset=$("reset"), elLegend=$("legend"), elTips=$("tips"), elTop=$("toTop");
+
+function T(k){return L[lang][k];}
+function li(){return LANGS.indexOf(lang);}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function fill(s,o){return s.replace(/\{(\w+)\}/g,function(m,k){return o[k];});}
+
+/* ---------- Build buttons once ---------- */
+for(var lv=0; lv<=4; lv++){
+  var b = document.createElement("button");
+  b.type="button"; b.className="lvl v"+lv; b.dataset.lv=lv; b.id="lvl-"+lv;
+  b.innerHTML='<span class="dot" aria-hidden="true">'+SYM[lv]+'</span><span class="nm"></span><span class="cnt"></span><span class="ds"></span>';
+  elLevels.appendChild(b);
+}
+["all"].concat(CATS).forEach(function(c){
+  var b = document.createElement("button");
+  b.type="button"; b.className="cat"; b.dataset.cat=c; b.id="cat-"+c;
+  b.innerHTML='<span class="ic" aria-hidden="true">'+ICON[c]+'</span><span class="cl"></span>';
+  elCats.appendChild(b);
+});
+
+/* ---------- Render ---------- */
+function renderStatic(){
+  document.documentElement.lang = {en:"en", vi:"vi", zh:"zh-HK"}[lang];
+  document.title = T("title");
+  document.querySelectorAll("[data-t]").forEach(function(el){ el.textContent = T(el.dataset.t); });
+  elQ.placeholder = T("search");
+  document.querySelectorAll("[data-lang]").forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.lang===lang ? "true":"false"); });
+  elCats.querySelectorAll(".cat").forEach(function(b){ b.querySelector(".cl").textContent = T("cats")[b.dataset.cat]; });
+  var lvls = T("levels");
+  elLegend.innerHTML = [1,2,3,4].map(function(v){
+    return '<li class="v'+v+'"><span class="dot" aria-hidden="true">'+SYM[v]+'</span><b>'+esc(lvls[v].name)+' · '+esc(lvls[v].desc)+'</b><span>'+esc(lvls[v].range)+'</span></li>';
+  }).join("");
+  elTips.innerHTML = T("tips").map(function(t){return "<li>"+esc(t)+"</li>";}).join("");
+}
+
+function renderControls(){
+  var lvls = T("levels");
+  var base = FOODS.filter(function(f){return state.cat==="all" || f.cat===state.cat;});
+  elLevels.querySelectorAll(".lvl").forEach(function(b){
+    var v = +b.dataset.lv;
+    b.querySelector(".nm").textContent = v ? lvls[v].name : T("allName");
+    b.querySelector(".ds").textContent = v ? lvls[v].desc : T("allDesc");
+    b.querySelector(".cnt").textContent = v ? base.filter(function(f){return f.lv===v;}).length : base.length;
+    b.setAttribute("aria-pressed", (!state.q && state.level===v) ? "true":"false");
+  });
+  elCats.querySelectorAll(".cat").forEach(function(b){
+    b.setAttribute("aria-pressed", (!state.q && state.cat===b.dataset.cat) ? "true":"false");
+  });
+  elClear.hidden = !state.q;
+  elReset.hidden = !(state.q || state.level || state.cat!=="all");
+}
+
+function figureHTML(f){
+  var k = li(), p = PHOTOS[f.id], cap;
+  if(p){
+    var who = [p.artist, p.license].filter(Boolean).map(esc).join(", ");
+    cap = esc(T("photo")) + (who ? ": " + who : "") + (p.url ? ' · <a href="'+esc(p.url)+'" target="_blank" rel="noopener">Wikimedia Commons</a>' : "");
+  } else {
+    cap = esc(T("illus"));
+  }
+  return '<button type="button" class="fig-img" data-close="'+f.id+'" aria-label="'+esc(T("close"))+'">'+
+         '<img src="'+fullSrc(f.id)+'" data-fallback="'+illSrc(f.id)+'" alt="'+esc(f.n[k])+'" class="'+(p?"is-photo":"is-ill")+'"></button>'+
+         '<figcaption><span>'+cap+'</span><button type="button" class="fig-close" data-close="'+f.id+'">✕ '+esc(T("close"))+'</button></figcaption>';
+}
+
+function card(f){
+  var k = li(), lvls = T("levels"), open = !!OPEN[f.id];
+  var alt = [0,1,2].filter(function(j){return j!==k;}).map(function(j){return f.n[j];}).join(" · ");
+  var note = f.note ? '<p class="note">'+esc(N[f.note][k])+'</p>' : "";
+  var langAttr = function(j){return ' lang="'+["en","vi","zh-HK"][j]+'"';};
+  return '<article class="food v'+f.lv+(open?' is-open':'')+'">'+
+         '<button type="button" class="pic" data-pic="'+f.id+'" aria-expanded="'+open+'" aria-controls="fig-'+f.id+'" aria-label="'+esc(fill(T("showPic"),{n:f.n[k]}))+'">'+
+           '<img src="'+thumbSrc(f.id)+'" data-fallback="'+illSrc(f.id,true)+'" alt="" loading="lazy" width="56" height="56">'+
+           '<span class="zoom" aria-hidden="true">'+(open?"−":"+")+'</span></button>'+
+         '<div class="txt"><h3'+langAttr(k)+'>'+esc(f.n[k])+'</h3><p class="alt">'+esc(alt)+'</p>'+note+'</div>'+
+         '<span class="badge"><b aria-hidden="true">'+SYM[f.lv]+'</b>'+esc(lvls[f.lv].short)+'</span>'+
+         '<figure class="fig" id="fig-'+f.id+'"'+(open?'':' hidden')+'>'+(open?figureHTML(f):'')+'</figure>'+
+         '</article>';
+}
+
+function renderList(){
+  var nq = norm(state.q.trim());
+  var items = FOODS.filter(function(f){
+    if(nq) return f.s.indexOf(nq) > -1;
+    return (state.level===0 || f.lv===state.level) && (state.cat==="all" || f.cat===state.cat);
+  });
+  var groups = [], lvls = T("levels");
+  if(state.level===0 || nq){
+    [1,2,3,4].forEach(function(v){
+      var g = items.filter(function(f){return f.lv===v;}).sort(function(a,b){return a.ci-b.ci || a.i-b.i;});
+      if(g.length) groups.push({cls:"v"+v, icon:'<span class="dot" aria-hidden="true">'+SYM[v]+'</span>', title:lvls[v].name, sub:lvls[v].desc, items:g});
+    });
+  } else {
+    CATS.forEach(function(c){
+      var g = items.filter(function(f){return f.cat===c;});
+      if(g.length) groups.push({cls:"v"+state.level, icon:'<span class="gic" aria-hidden="true">'+ICON[c]+'</span>', title:T("cats")[c], sub:"", items:g});
+    });
+  }
+  elStatus.textContent = nq ? fill(T("match"),{n:items.length, q:state.q.trim()}) : fill(T("showing"),{n:items.length});
+  if(!items.length){ elList.innerHTML = '<p class="empty">'+esc(T("none"))+'</p>'; return; }
+  elList.innerHTML = groups.map(function(g){
+    return '<section class="group '+g.cls+'"><div class="ghead">'+g.icon+'<h2>'+esc(g.title)+(g.sub?'<small>'+esc(g.sub)+'</small>':'')+'</h2><span class="gc">'+g.items.length+'</span></div>'+
+           '<div class="grid">'+g.items.map(card).join("")+'</div></section>';
+  }).join("");
+}
+
+function render(){ renderControls(); renderList(); }
+
+function applySize(){
+  document.documentElement.style.setProperty("--scale", SCALES[si]);
+  $("size-down").disabled = si===0;
+  $("size-up").disabled = si===SCALES.length-1;
+}
+
+/* ---------- Events ---------- */
+document.querySelectorAll("[data-lang]").forEach(function(b){
+  b.addEventListener("click", function(){
+    lang = b.dataset.lang; store.set("gfg-lang", lang);
+    renderStatic(); render();
+  });
+});
+elLevels.addEventListener("click", function(e){
+  var b = e.target.closest(".lvl"); if(!b) return;
+  state.level = +b.dataset.lv; state.q = ""; elQ.value = ""; render();
+});
+elCats.addEventListener("click", function(e){
+  var b = e.target.closest(".cat"); if(!b) return;
+  state.cat = b.dataset.cat; state.q = ""; elQ.value = ""; render();
+});
+elQ.addEventListener("input", function(){
+  state.q = elQ.value;
+  if(state.q.trim()){ state.level = 0; state.cat = "all"; }
+  render();
+});
+elQ.addEventListener("keydown", function(e){ if(e.key==="Enter") elQ.blur(); });
+elClear.addEventListener("click", function(){ state.q=""; elQ.value=""; render(); elQ.focus(); });
+elReset.addEventListener("click", function(){ state.q=""; elQ.value=""; state.level=0; state.cat="all"; render(); });
+$("size-down").addEventListener("click", function(){ if(si>0){si--; store.set("gfg-size",si); applySize();} });
+$("size-up").addEventListener("click", function(){ if(si<SCALES.length-1){si++; store.set("gfg-size",si); applySize();} });
+elTop.addEventListener("click", function(){ window.scrollTo(0,0); });
+window.addEventListener("scroll", function(){ elTop.hidden = window.scrollY < 700; }, {passive:true});
+window.addEventListener("hashchange", function(){
+  var h = (location.hash||"").slice(1).toLowerCase();
+  if(ALIAS[h]){ lang = ALIAS[h]; renderStatic(); render(); }
+});
+
+function togglePic(id){
+  var f = BYID[id]; if(!f) return;
+  var art = elList.querySelector('[data-pic="'+id+'"]'); if(!art) return;
+  art = art.closest(".food");
+  var fig = art.querySelector(".fig"), btn = art.querySelector(".pic");
+  OPEN[id] = !OPEN[id];
+  if(OPEN[id]){ fig.innerHTML = figureHTML(f); fig.hidden = false; }
+  else { fig.hidden = true; fig.innerHTML = ""; }
+  art.classList.toggle("is-open", !!OPEN[id]);
+  btn.setAttribute("aria-expanded", OPEN[id] ? "true" : "false");
+  btn.querySelector(".zoom").textContent = OPEN[id] ? "−" : "+";
+  if(!OPEN[id]) btn.focus({preventScroll:true});
+}
+elList.addEventListener("click", function(e){
+  var b = e.target.closest("[data-pic],[data-close]"); if(!b) return;
+  togglePic(b.dataset.pic || b.dataset.close);
+});
+/* If a photo is missing, show the illustration instead */
+elList.addEventListener("error", function(e){
+  var im = e.target;
+  if(im.tagName === "IMG" && im.dataset.fallback && im.getAttribute("src") !== im.dataset.fallback){
+    im.src = im.dataset.fallback; im.className = "is-ill";
+  }
+}, true);
+
+applySize(); renderStatic(); render();
+try{
+  fetch("Images/photos/credits.json", {cache:"no-cache"})
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(j){ if(j && typeof j === "object"){ PHOTOS = j; renderList(); } })
+    .catch(function(){});
+}catch(e){}
+})();
+</script>
+</body>
+</html>
