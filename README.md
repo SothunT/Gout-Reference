@@ -9,42 +9,49 @@ A simple, color-coded guide to which foods are safe to eat with gout, in English
 
 It's a single `index.html` page plus an `Images` folder. It needs no build step and no server code, and it works on phones and computers.
 
-## Put it on GitHub Pages
+## What's in this folder
+
+| File | What it is |
+| --- | --- |
+| `index.html` | The whole app. |
+| `Images/illustrations/` | Food illustrations. They show until the photos are downloaded, and for any food without a photo. |
+| `Images/photos/` | Where the real food photos go. Empty until you run the downloader. |
+| `Images/photo-sources.json` | Each food's id and the Wikimedia Commons photo it uses. |
+| `download_images.bat` | **Windows:** double-click to download all the photos into `Images/photos`. |
+| `download_images.command` | **Mac:** double-click to do the same. |
+| `download_images.ps1` / `.py` | The scripts the two launchers run. |
+| `manifest.webmanifest`, `*.png` | App icon for adding the page to a phone's home screen. |
+
+## Step 1 — download the photos (once)
+
+- **Windows:** double-click `download_images.bat`.
+- **Mac:** double-click `download_images.command`. If macOS blocks it, right-click it → **Open** → **Open**. If it asks to install developer tools, accept, then run it again.
+- **Anything with Python:** open a terminal in this folder and run `python3 download_images.py`.
+
+A window shows progress for all 203 foods. It takes about 10–15 minutes. If Wikimedia asks it to slow down, it says so, waits and carries on by itself. Then:
+
+- Each food gets a photo from Wikimedia Commons in `Images/photos`, plus a small preview in `Images/photos/thumbs`. Every food has a photo chosen to show the food itself, not the plant or the live animal.
+- The photographer and license are saved in `Images/photos/credits.js`. The app shows them under each photo, as the free license requires.
+- If any photo can't be downloaded, that food keeps its illustration and is listed in `failed-images.txt`. Run the downloader again to retry. It only fetches what's missing.
+
+Open `index.html` in a browser and tap a few pictures to check the photos before uploading. To swap one, see [Changing a photo](#changing-a-photo).
+
+## Step 2 — put it on GitHub Pages
 
 1. Create a new **public** repository on GitHub, for example `gout-food-guide`.
-2. Unzip the download. Click **Add file → Upload files** and drag in **everything inside** the `gout-food-guide` folder: `index.html`, `manifest.webmanifest`, the three `.png` icons, this README, and the `Images`, `tools` and `.github` folders. Click **Commit changes**.
-   - **On a Mac:** Finder hides the `.github` folder because its name starts with a dot. Press **Command + Shift + .** (period) in the Finder window to show it, then drag it in with the rest.
-   - If `.github` still doesn't upload, see [Turning on the photo step by hand](#turning-on-the-photo-step-by-hand) below.
-3. Go to **Settings → Pages**. Under **Build and deployment**, set **Source** to *Deploy from a branch*, choose **main** and **/ (root)**, then click **Save**.
+2. Click **Add file → Upload files**. Drag in `index.html`, `README.md`, `manifest.webmanifest`, the three `.png` icons, and the whole **`Images` folder** (drag the folder itself, not just what's inside it). Click **Commit changes**. You don't need to upload the download scripts.
+3. Go to **Settings → Pages**. Under **Build and deployment**, set **Source** to **Deploy from a branch**, pick `main` and `/ (root)`, then click **Save**.
 4. After a minute or two the page will be live at
    `https://YOUR-USERNAME.github.io/gout-food-guide/`
 
-## Food photos
+Keep the folder named exactly `Images` with a capital I, because GitHub Pages is case-sensitive.
 
-Every food has a small picture next to its name. Tap it to show a bigger picture, and tap again to close it.
+If you run the downloader again later, upload the `Images/photos` folder again so the new photos and the updated `credits.js` go up together.
 
-- Right after you upload, the pictures are **illustrations**. They're stored in `Images/illustrations`.
-- A one-time step called **Download food photos** runs on GitHub by itself after you upload. It downloads a real photo of each food from Wikipedia / Wikimedia Commons into `Images/photos` and saves it to the repository. It takes about 2–3 minutes. Then the site updates within a few minutes and shows the photos instead.
-- Each photo shows the photographer and its license underneath, as the free license requires.
-- A few foods have no suitable free photo, such as lotus root and sea snails. Those keep their illustration.
+## Changing a photo
 
-**Check that it worked:** open the **Actions** tab of the repository. You should see **Download food photos** with a green check ✓.
-
-- If Actions asks you to enable workflows, click the green button to enable them. Then click **Download food photos → Run workflow**.
-- If it fails with a permissions error, go to **Settings → Actions → General → Workflow permissions**, choose **Read and write permissions**, click **Save**, and run it again.
-- If the photos don't show on the site 10 minutes after the green check, open **Actions → pages build and deployment** and click **Re-run all jobs**.
-
-**Use your own photo for a food:** upload it to `Images/photos` named after the food's id, for example `beef-pho.jpg`. The ids are listed in `Images/photo-sources.json`. Then run **Download food photos** again from the Actions tab. It never replaces photos that are already there, so yours stay. It just adds the small preview picture and the list entry.
-
-**Choose a different photo:** in `Images/photo-sources.json`, change the Wikipedia article name for that food. Then delete the old photo from `Images/photos`, and the step downloads the new one automatically.
-
-### Turning on the photo step by hand
-
-If the `.github` folder didn't upload, you can create the file on GitHub directly:
-
-1. In the repository, click **Add file → Create new file**.
-2. Type the name `.github/workflows/download-photos.yml`. The slashes create the folders.
-3. Paste in the contents of that file from the zip, then click **Commit changes**.
+- **Use your own photo:** save it as `Images/photos/<food-id>.jpg`, for example `Images/photos/beef-pho.jpg`. The ids are listed in `Images/photo-sources.json`. Delete that food's small preview in `Images/photos/thumbs` and its entry in `Images/photos/credits.json`, then run the downloader again. It makes the new preview and adds your photo to the list, and it never replaces your own photos.
+- **Pick a different Wikimedia photo:** find a photo on [Wikimedia Commons](https://commons.wikimedia.org) and copy its file name from the page title, for example `File:Pho bo.jpg`. In `Images/photo-sources.json`, put that name next to the food's id, then run the downloader again. It notices that the source changed and downloads the new photo. You can also put a Wikipedia article name there instead of a `File:` name, and the article's main photo is used.
 
 ## Open it straight in a language
 
@@ -80,7 +87,7 @@ That is: category (`veg`, `meat`, `seafood`, `fruit`, `drink`, `dish`, `other`),
 ## Picture credits
 
 - Illustrations: [Microsoft Fluent Emoji](https://github.com/microsoft/fluentui-emoji), MIT License. See `Images/illustrations/LICENSE.txt`.
-- Photos: Wikimedia Commons contributors. The author and license for each photo are listed in `Images/photos/credits.json` and shown under the photo in the app.
+- Photos: Wikimedia Commons contributors, plus two Flickr photos (braised pork & eggs, Cantonese slow-cooked soup). The author and license for each photo are listed in `Images/photos/credits.json` and shown under the photo in the app. The downloader treats the two Flickr photos like your own photos and never replaces them.
 
 ---
 

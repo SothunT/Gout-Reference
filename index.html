@@ -151,6 +151,12 @@ h1{font-size:1.55rem;font-weight:800;line-height:1.15;margin:0;letter-spacing:-.
 .fig figcaption span{min-width:0;overflow-wrap:anywhere}
 .fig figcaption a{color:var(--accent)}
 .fig-close{border:2px solid var(--accent);color:var(--accent);background:transparent;border-radius:10px;padding:.3rem .8rem;font-weight:700;font-size:.85rem;min-height:44px;margin-left:auto}
+.view{display:grid;gap:.5rem;margin-top:.2rem}
+.vrow{display:flex;align-items:center;gap:.4rem .7rem;flex-wrap:wrap;min-width:0}
+.vlab{font-size:.78rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);min-width:4.6rem}
+.view .seg{flex:1 1 15rem;min-width:0}
+.view .seg button{flex:1 1 0;min-width:0;white-space:normal;line-height:1.2;font-size:.84rem;padding:.3rem .45rem}
+@media (min-width:800px){.view{grid-template-columns:2fr 3fr;gap:.5rem 1.5rem}}
 .hint{display:flex;align-items:center;gap:.5rem;margin:.1rem 0 0;font-size:.84rem;color:var(--ink-soft)}
 .hint-pic{display:grid;place-items:center;width:1.3rem;height:1.3rem;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-weight:800;font-size:.85rem;line-height:1;flex:none}
 .food .txt{min-width:0}
@@ -219,6 +225,23 @@ h1{font-size:1.55rem;font-weight:800;line-height:1.15;margin:0;letter-spacing:-.
       <input type="search" id="q" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Search">
       <button type="button" class="clear" id="clear" aria-label="Clear search" hidden>✕</button>
     </div>
+    <div class="view">
+      <div class="vrow">
+        <span class="vlab" id="sort-label" data-t="sortLabel">Sort</span>
+        <div class="seg" role="group" aria-labelledby="sort-label">
+          <button type="button" id="sort-risk" data-sort="risk" data-t="sortRisk">Lowest risk first</button>
+          <button type="button" id="sort-az" data-sort="az" data-t="sortAz">A to Z</button>
+        </div>
+      </div>
+      <div class="vrow">
+        <span class="vlab" id="group-label" data-t="groupLabel">Group</span>
+        <div class="seg" role="group" aria-labelledby="group-label">
+          <button type="button" id="grp-level" data-group="level" data-t="grpLevel">By color</button>
+          <button type="button" id="grp-cat" data-group="cat" data-t="grpCat">By food type</button>
+          <button type="button" id="grp-none" data-group="none" data-t="grpNone">One list</button>
+        </div>
+      </div>
+    </div>
     <p class="hint"><span class="hint-pic" aria-hidden="true">+</span><span data-t="picHint">Tap a picture to see it bigger.</span></p>
   </section>
 
@@ -245,6 +268,7 @@ h1{font-size:1.55rem;font-weight:800;line-height:1.15;margin:0;letter-spacing:-.
 
 <button type="button" id="toTop" hidden>↑ <span data-t="top">Top</span></button>
 
+<script src="Images/photos/credits.js"></script>
 <script>
 (function(){
 "use strict";
@@ -258,6 +282,7 @@ var L = {
   search:"Search foods, any language",
   showing:"Showing {n} foods", match:"{n} foods match “{q}”",
   none:"No foods found. Try another word, or tap “Show everything”.",
+  sortLabel:"Sort", sortAz:"A to Z", sortRisk:"Lowest risk first", groupLabel:"Group", grpLevel:"By color", grpCat:"By food type", grpNone:"One list",
   showPic:"Show picture of {n}", picHint:"Tap a picture to see it bigger. Tap again to close.", close:"Close picture", illus:"Illustration", photo:"Photo",
   reset:"Show everything", legendTitle:"What the colors mean", tipsTitle:"Everyday tips", top:"Top",
   allName:"All colors", allDesc:"Show every food",
@@ -284,6 +309,7 @@ var L = {
   search:"Tìm món ăn, tiếng nào cũng được",
   showing:"Đang xem {n} món", match:"{n} món khớp với “{q}”",
   none:"Không tìm thấy. Thử từ khác, hoặc bấm “Xem tất cả”.",
+  sortLabel:"Sắp xếp", sortAz:"A đến Z", sortRisk:"Ít rủi ro trước", groupLabel:"Nhóm", grpLevel:"Theo màu", grpCat:"Theo loại", grpNone:"Một danh sách",
   showPic:"Xem hình {n}", picHint:"Bấm vào hình để xem lớn hơn. Bấm lần nữa để đóng.", close:"Đóng hình", illus:"Hình minh họa", photo:"Ảnh",
   reset:"Xem tất cả", legendTitle:"Ý nghĩa các màu", tipsTitle:"Lời khuyên hằng ngày", top:"Lên đầu",
   allName:"Tất cả các màu", allDesc:"Xem mọi món",
@@ -310,6 +336,7 @@ var L = {
   search:"搜尋食物，任何語言都得",
   showing:"顯示 {n} 種食物", match:"{n} 種食物符合「{q}」",
   none:"搵唔到。試吓其他字，或者撳「顯示全部」。",
+  sortLabel:"排序", sortAz:"按名稱", sortRisk:"低風險先", groupLabel:"分組", grpLevel:"按顏色", grpCat:"按種類", grpNone:"一個清單",
   showPic:"睇{n}嘅相", picHint:"撳相片可以睇大啲，再撳一次就收埋。", close:"收起相片", illus:"插圖", photo:"相片",
   reset:"顯示全部", legendTitle:"顏色代表咩", tipsTitle:"日常小貼士", top:"返回頂部",
   allName:"全部顏色", allDesc:"顯示所有食物",
@@ -594,7 +621,7 @@ var FOODS = F.map(function(r,i){
 });
 var BYID = {}; FOODS.forEach(function(f){ BYID[f.id] = f; });
 
-/* Photos: filled in on GitHub by the "Download food photos" step. Until then, illustrations show. */
+/* Photos: downloaded into Images/photos by download_images.bat (Windows) or download_images.command (Mac). */
 var PHOTOS = {};
 var OPEN = {};
 function thumbSrc(id){ return PHOTOS[id] ? "Images/photos/thumbs/"+id+".jpg" : "Images/illustrations/small/"+(ILL[id]||"fork-and-knife-with-plate")+".webp"; }
@@ -620,7 +647,9 @@ var lang = (function(){
   return "en";
 })();
 var si = parseInt(store.get("gfg-size"),10); if(!(si >= 0 && si < SCALES.length)) si = 1;
-var state = {level:0, cat:"all", q:""};
+var state = {level:0, cat:"all", q:"",
+  sort: store.get("gfg-sort")==="az" ? "az" : "risk",
+  group: ["level","cat","none"].indexOf(store.get("gfg-group")) > -1 ? store.get("gfg-group") : "level"};
 
 var $ = function(id){return document.getElementById(id);};
 var elLevels=$("levels"), elCats=$("cats"), elList=$("list"), elQ=$("q"), elClear=$("clear"),
@@ -673,6 +702,8 @@ function renderControls(){
   elCats.querySelectorAll(".cat").forEach(function(b){
     b.setAttribute("aria-pressed", (!state.q && state.cat===b.dataset.cat) ? "true":"false");
   });
+  document.querySelectorAll("[data-sort]").forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.sort===state.sort ? "true":"false"); });
+  document.querySelectorAll("[data-group]").forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.group===state.group ? "true":"false"); });
   elClear.hidden = !state.q;
   elReset.hidden = !(state.q || state.level || state.cat!=="all");
 }
@@ -681,7 +712,8 @@ function figureHTML(f){
   var k = li(), p = PHOTOS[f.id], cap;
   if(p){
     var who = [p.artist, p.license].filter(Boolean).map(esc).join(", ");
-    cap = esc(T("photo")) + (who ? ": " + who : "") + (p.url ? ' · <a href="'+esc(p.url)+'" target="_blank" rel="noopener">Wikimedia Commons</a>' : "");
+    var site = /flickr\.com/.test(p.url||"") ? "Flickr" : "Wikimedia Commons";
+    cap = esc(T("photo")) + (who ? ": " + who : "") + (p.url ? ' · <a href="'+esc(p.url)+'" target="_blank" rel="noopener">'+site+'</a>' : "");
   } else {
     cap = esc(T("illus"));
   }
@@ -705,27 +737,44 @@ function card(f){
          '</article>';
 }
 
+var COLL = {};
+function collator(){
+  var loc = {en:"en", vi:"vi", zh:"zh-HK"}[lang];
+  if(!COLL[loc]){ try{ COLL[loc] = new Intl.Collator(loc, {sensitivity:"base", numeric:true}); }catch(e){ COLL[loc] = {compare:function(x,y){return x<y?-1:x>y?1:0;}}; } }
+  return COLL[loc];
+}
+function sortItems(list){
+  var k = li(), c = collator();
+  return list.slice().sort(function(a,b){
+    if(state.sort==="risk" && a.lv!==b.lv) return a.lv - b.lv;
+    return c.compare(a.n[k], b.n[k]) || a.i - b.i;
+  });
+}
+
 function renderList(){
   var nq = norm(state.q.trim());
-  var items = FOODS.filter(function(f){
+  var items = sortItems(FOODS.filter(function(f){
     if(nq) return f.s.indexOf(nq) > -1;
     return (state.level===0 || f.lv===state.level) && (state.cat==="all" || f.cat===state.cat);
-  });
+  }));
   var groups = [], lvls = T("levels");
-  if(state.level===0 || nq){
+  if(state.group==="level"){
     [1,2,3,4].forEach(function(v){
-      var g = items.filter(function(f){return f.lv===v;}).sort(function(a,b){return a.ci-b.ci || a.i-b.i;});
+      var g = items.filter(function(f){return f.lv===v;});
       if(g.length) groups.push({cls:"v"+v, icon:'<span class="dot" aria-hidden="true">'+SYM[v]+'</span>', title:lvls[v].name, sub:lvls[v].desc, items:g});
     });
-  } else {
+  } else if(state.group==="cat"){
     CATS.forEach(function(c){
       var g = items.filter(function(f){return f.cat===c;});
-      if(g.length) groups.push({cls:"v"+state.level, icon:'<span class="gic" aria-hidden="true">'+ICON[c]+'</span>', title:T("cats")[c], sub:"", items:g});
+      if(g.length) groups.push({cls:state.level ? "v"+state.level : "", icon:'<span class="gic" aria-hidden="true">'+ICON[c]+'</span>', title:T("cats")[c], sub:"", items:g});
     });
+  } else {
+    groups.push({flat:true, items:items});
   }
   elStatus.textContent = nq ? fill(T("match"),{n:items.length, q:state.q.trim()}) : fill(T("showing"),{n:items.length});
   if(!items.length){ elList.innerHTML = '<p class="empty">'+esc(T("none"))+'</p>'; return; }
   elList.innerHTML = groups.map(function(g){
+    if(g.flat) return '<section class="group"><div class="grid">'+g.items.map(card).join("")+'</div></section>';
     return '<section class="group '+g.cls+'"><div class="ghead">'+g.icon+'<h2>'+esc(g.title)+(g.sub?'<small>'+esc(g.sub)+'</small>':'')+'</h2><span class="gc">'+g.items.length+'</span></div>'+
            '<div class="grid">'+g.items.map(card).join("")+'</div></section>';
   }).join("");
@@ -753,6 +802,12 @@ elLevels.addEventListener("click", function(e){
 elCats.addEventListener("click", function(e){
   var b = e.target.closest(".cat"); if(!b) return;
   state.cat = b.dataset.cat; state.q = ""; elQ.value = ""; render();
+});
+document.querySelectorAll("[data-sort]").forEach(function(b){
+  b.addEventListener("click", function(){ state.sort = b.dataset.sort; store.set("gfg-sort", state.sort); render(); });
+});
+document.querySelectorAll("[data-group]").forEach(function(b){
+  b.addEventListener("click", function(){ state.group = b.dataset.group; store.set("gfg-group", state.group); render(); });
 });
 elQ.addEventListener("input", function(){
   state.q = elQ.value;
@@ -796,13 +851,9 @@ elList.addEventListener("error", function(e){
   }
 }, true);
 
+/* Images/photos/credits.js is written by the download_images script. Until it exists, illustrations show. */
+if(window.PHOTO_CREDITS && typeof window.PHOTO_CREDITS === "object") PHOTOS = window.PHOTO_CREDITS;
 applySize(); renderStatic(); render();
-try{
-  fetch("Images/photos/credits.json", {cache:"no-cache"})
-    .then(function(r){ return r.ok ? r.json() : null; })
-    .then(function(j){ if(j && typeof j === "object"){ PHOTOS = j; renderList(); } })
-    .catch(function(){});
-}catch(e){}
 })();
 </script>
 </body>
